@@ -2,7 +2,8 @@
 // http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID={d134b892e56243aa696d32a18a01d01e}
 //d134b892e56243aa696d32a18a01d01e
 
-// CODE: Query API
+//EVENT: Query API
+//EVENT: click search, render weather data
 $('#search').on('click', function () {
     console.log("click");
 
@@ -22,14 +23,7 @@ var currentWeather = {
     currentConditions: null
 };
 
-
-// var arrayForecast = [add looped through every 8th object in list];
-
-// GET DATA BACK 
-// var currentConditions
-// WHAT DO I WANT THE DATA TO LOOK LIKE
-// TRANSPOSE
-//EVENT: click search, render weather data
+let arrayForecast = []; //made of every 8th object in list
 
 var fetchCurrentWeather = function (query) {
     $.ajax({
@@ -49,26 +43,39 @@ var fetchCurrentWeather = function (query) {
     });
 };
 //VIEW: 5-day forcast 
-// day, icon, temp, cond descrip
-"https://api.openweathermap.org/data/2.5/forecast?q=durham,us&APPID=d134b892e56243aa696d32a18a01d01e&units=imperial",
-var fetchForecast = function (query) {
+// day, icon, temp, cond descrip 
+let fetchForecast = function (query) {
     $.ajax({
         method: "GET",
         url: "https://api.openweathermap.org/data/2.5/forecast?q=" + query + "&APPID=d134b892e56243aa696d32a18a01d01e&units=imperial",
         dataType: "JSON",
         success: function (data) {
-            let forecastData = {
-                day: null,
-                icon: null,
-                temp: null,
-                conditions: null,
-            }
-            forecastData.day = data.
+            
+            // forecastData.day = data.main.dt_text
+            // forecastData.temp = data.main.temp
+            // forecastData.icon = data.weather.icon
+            // forecastData.conditions = data.weather.description
+
+            for (let i = 0; i < data.list.length; i += 8) {
+                console.log(data.list[i])
+                let forecastData = {
+                    day: moment(data.list[i].dt_txt).format('dddd'),
+                    icon: null,
+                    temp: data.list[i].main.temp,
+                    conditions: data.list[i].weather[0].main
+                }
+
+                arrayForecast.push(forecastData);
+                console.log(arrayForecast)
+
+         //create daily forecast objects and push them to the forecast array
+                
+            };
 
 
-
-            console.log(data);
-            renderForecastCard(data);
+            // console.log(data)
+            // renderForecastCard();
+            // for (let i = 0; i < arrayForecast.length;i++)
         },
         error: function (unknownError, timeOut) {
             console.log(unknownError);
@@ -76,23 +83,11 @@ var fetchForecast = function (query) {
     });
 };
 
-let renderCurrentWeather = function () {
+let renderCurrentWeather = function () { //current weather one object - handlebars tenplate(html)
     console.log(currentWeather);
-
 }
 
 //USE HANDLEBARS TEMPLATE
 //VIEW: temp in farenhiet
 //VIEW: Conditions description (cloudy,raining)
-
 //VIEW: New conditions on new seach (will need to empty something)
-
-// endpoint
-// {
-//     "id": 4464374,
-//     "name": "Durham County",
-//     "country": "US",
-//     "coord": {
-//         "lon": -78.866402,
-//         "lat": 36.033482
-//     }
