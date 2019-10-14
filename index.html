@@ -14,84 +14,93 @@
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <div class="page-header">
-                    <h1 class="text-center" style="text-align: center"> Current Weather</h1>
-                    <!--FORECAST INFO-->    
-                    <div class="container" style="text-align: center">
-                        <div class="col-md-auto">
-                            <div id="Current-Forecast">
-                                <h2>Weather in <span id="location"> </span></h2>
-                                <div id="icon">
-                                    <img id="img" src="" />
-                                </div>
-                                <p>It is currently <span id="temp"> </span>ªF with <span id="desc"> </span></p>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="page-header">
+          <h1 class="text-center" style="text-align: center"> Current Weather</h1>
+<!--FORECAST INFO-->
+  <div class="container" style="text-align: center">
+    <div class="col-md-auto">
+      <div id="Current-Forecast">
+        <h2>Weather in <span id="location"> </span></h2>
+          <div id="icon">
+            <img id="img" src="" />
+  </div>
+                                
+  <p>It is currently <span id="temp"> </span>ªF with <span id="desc"> </span></p>
 
-                                <!---Search Form-->
-                                <form class="search-form">
-                                    <div class="form-group">
-                                        <input type="text" id="search-query" class="form-control"
-                                            placeholder="Enter City Name"></input>
-                                    </div>
-
-                                    <button type="button" id=search class="btn btn-primary search">Search</button>
-                                </form>
-
-                                <hr />
-
-                                <div class="books row">
-                                    <!--5-day forcast cards-->
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="card-group">
-                                                <div class="card">
-                                                    <img src="http://openweathermap.org/img/wn/10d@2x.png"
-                                                        class="card-img-top" alt="...">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title" id="moment"> Monday </h5>
-                                                        <p class="card-text">the forcasted tempeture is <span id="temp">
-                                                            </span>ªF with <span id="desc"></span> </p>
-                                                        <p class="card-text"><small class="text-muted">Last updated 3
-                                                                mins ago</small></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <script id="forecast-template" type="text/x-handlebars-template">
-                                            <div class="forecast">
-                                                <h1>{{ dddd }}</h1>
-                                                <img> src="{{ url }}">
-                                                <div class="body">
-                                                    <p>{{ temp }}</p>
-                                                    <p>{{ desc }}</p>
-                                                </div>
-                                            </div>
-                                        </script>
-
-                                        <!-- jQuery first, then Tether, then Bootstrap JS. -->
-                                        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
-                                        <script
-                                            src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
-                                            integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
-                                            crossorigin="anonymous"></script>
-                                        <script
-                                            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
-                                            integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-                                            crossorigin="anonymous"></script>
-                                        <script
-                                            src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js">
-                                        </script>
-                                        <script id="book-templete" type="text/x-handlebars-template">
-
-
-
-                                            <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
-        integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
-                                        <script src="weather.js"></script>
+ <!---Search Form-->
+<form class="search-form">
+<div class="form-group">
+<input type="text" id="search-query" class="form-control" placeholder="Enter City Name"></input>
+</div>
+<button type="button" id=search class="btn btn-primary search">Search</button>
+</form>
+                                
+<!--5-day forcast cards-->
+<div class="card-deck">
+  <div class="card">
+    <img src="http://openweathermap.org/img/wn/10d@2x.png" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title" id="moment"> Monday </h5>
+      <p class="card-text">the forcasted tempeture is <span id="temp">
+        </span>ªF with <span id="desc"></span> </p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+  <div class="card">
+    <img src="http://openweathermap.org/img/wn/10d@2x.png" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title" id="moment"> Monday </h5>
+      <p class="card-text">the forcasted tempeture is <span id="temp">
+        </span>ªF with <span id="desc"></span> </p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+  <div class="card">
+    <img src="http://openweathermap.org/img/wn/10d@2x.png" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title" id="moment"> Monday </h5>
+      <p class="card-text">the forcasted tempeture is <span id="temp">
+        </span>ªF with <span id="desc"></span> </p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+  <div class="card">
+    <img src="http://openweathermap.org/img/wn/10d@2x.png" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title" id="moment"> Monday </h5>
+      <p class="card-text">the forcasted tempeture is <span id="temp">
+        </span>ªF with <span id="desc"></span> </p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+  <div class="card">
+    <img src="http://openweathermap.org/img/wn/10d@2x.png" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title" id="moment"> Monday </h5>
+      <p class="card-text">the forcasted tempeture is <span id="temp">
+        </span>ªF with <span id="desc"></span> </p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+    </div>
+  </div>
+</div>
+<!-- jQuery first, then Tether, then Bootstrap JS. -->
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+    integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+    integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+    integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" 
+    crossorigin="anonymous"></script>
+<script src="weather.js"></script>
 </body>
 
 </html>
