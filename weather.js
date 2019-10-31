@@ -92,24 +92,3 @@ let renderCurrentWeather = function () { //current weather one object - handleba
 //VIEW: Conditions description (cloudy,raining)
 //VIEW: New conditions on new seach (will need to empty something)
 
-
-// rendering current forecast
-// turn our "template" into html
-var source = $('#forecast-template').html();
-
-// compile our template html using handlebars
-var template = Handlebars.compile(source);
-
-// fill our template with information
-var newHTML = template(currentWeather);
-
-// append our new html to the page
-$('.forecast').append(newHTML);
-
-var newHTML2 = template({
-    temp: "blah",
-    location: null,
-    currentConditions: null
-});
-
-$('.forecast').append(newHTML2);
