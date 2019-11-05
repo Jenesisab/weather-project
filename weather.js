@@ -15,12 +15,17 @@ $('#search').on('click', function () {
     renderCurrentWeather();
 });
 
-// hardcode view
-var currentWeather = {
-    icon: null,
-    temp: null,
-    location: null,
-    currentConditions: null
+// hardcode view// constructor function
+var currentWeather = function(data) {
+    var attributes = {
+        icon: "http://openweathermap.org/img/wn/" + data.weather[0].icon + ".png",
+        temp: data.main.temp,
+        location: data.name,
+        currentConditions: data.weather[0].description
+    }
+ return {
+    attributes: attributes
+}
 };
 
 let arrayForecast = []; //made of every 8th object in list
@@ -32,10 +37,12 @@ var fetchCurrentWeather = function (query) {
         dataType: "JSON",
         success: function (data) {
             console.log(data.name);
-            currentWeather.temp = data.main.temp;
-            currentWeather.location = data.name;
-            currentWeather.currentConditions = data.weather[0].main;
-            renderCurrentWeather();
+            // currentWeather.temp = data.main.temp;
+            // currentWeather.location = data.name;
+            // currentWeather.currentConditions = data.weather[0].main;
+            var returnedCurrentWeather = currentWeather(data);
+            console.log(returnedCurrentWeather);
+            renderCurrentWeather(currentWeather);
         },
         error: function (unknownError, timeOut) {
             console.log(unknownError);
@@ -50,7 +57,7 @@ let fetchForecast = function (query) {
         url: "https://api.openweathermap.org/data/2.5/forecast?q=" + query + "&APPID=d134b892e56243aa696d32a18a01d01e&units=imperial",
         dataType: "JSON",
         success: function (data) {
-            
+
             // forecastData.day = data.main.dt_text
             // forecastData.temp = data.main.temp
             // forecastData.icon = data.weather.icon
@@ -68,8 +75,8 @@ let fetchForecast = function (query) {
                 arrayForecast.push(forecastData);
                 console.log(arrayForecast)
 
-         //create daily forecast objects and push them to the forecast array
-                
+                //create daily forecast objects and push them to the forecast array
+
             };
 
 
@@ -83,12 +90,35 @@ let fetchForecast = function (query) {
     });
 };
 
-let renderCurrentWeather = function () { //current weather one object - handlebars tenplate(html)
-    console.log(currentWeather);
-}
+// let createWeatherCard = function (data) {
+//     var cloud = {
+//         conditions: data.weather[0].main,
+//         description: data.weather[0].description,
+//         icon: "http://openweathermap.org/img/wn/" + data.weather[0].icon + ".png",
+//         temp: data.main.temp,
+//         city: data.name
+//     };
+//     console.log(weather.icon);
+//     currentWeather.push(cloud);
+//     console.log(currentWeather);
+//     renderCurrentWeather(cloud);
+// }
+
+
+
+let renderCurrentWeather = function () {
+        $(".current-weather").empty();
+        var source = $('#card-template-current').html();
+        var template = Handlebars.compile(source);
+        var newHTML = template(cloud);
+        console.log(newHTML);
+        $('.current-weather').append(newHTML);
+};
+    //current weather one object - handlebars tenplate(html)
+    // console.log(currentWeather);
+
 
 //USE HANDLEBARS TEMPLATE
 //VIEW: temp in farenhiet
 //VIEW: Conditions description (cloudy,raining)
 //VIEW: New conditions on new seach (will need to empty something)
-
