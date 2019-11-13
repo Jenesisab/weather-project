@@ -2,17 +2,22 @@
 // http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID={d134b892e56243aa696d32a18a01d01e}
 //d134b892e56243aa696d32a18a01d01e
 
+let renderCurrentWeather = function (weather) {
+    $(".current-weather").empty();
+    var source = $('#card-template-current').html();
+    var template = Handlebars.compile(source);
+    var newHTML = template(weather);
+    console.log(newHTML);
+    $('.current-weather').append(newHTML);
+};
+
 //EVENT: Query API
 //EVENT: click search, render weather data
 $('#search').on('click', function () {
     console.log("click");
-
     let city = $("#search-query").val();
-
-
     fetchCurrentWeather(city)
     fetchForecast(city)
-    renderCurrentWeather();
 });
 
 // hardcode view// constructor function
@@ -42,7 +47,7 @@ var fetchCurrentWeather = function (query) {
             // currentWeather.currentConditions = data.weather[0].main;
             var returnedCurrentWeather = currentWeather(data);
             console.log(returnedCurrentWeather);
-            renderCurrentWeather(currentWeather);
+            renderCurrentWeather(returnedCurrentWeather);
         },
         error: function (unknownError, timeOut) {
             console.log(unknownError);
@@ -90,14 +95,7 @@ let fetchForecast = function (query) {
     });
 };
 
-// let createWeatherCard = function (data) {
-//     var cloud = {
-//         conditions: data.weather[0].main,
-//         description: data.weather[0].description,
-//         icon: "http://openweathermap.org/img/wn/" + data.weather[0].icon + ".png",
-//         temp: data.main.temp,
-//         city: data.name
-//     };
+
 //     console.log(weather.icon);
 //     currentWeather.push(cloud);
 //     console.log(currentWeather);
@@ -106,19 +104,4 @@ let fetchForecast = function (query) {
 
 
 
-let renderCurrentWeather = function () {
-        $(".current-weather").empty();
-        var source = $('#card-template-current').html();
-        var template = Handlebars.compile(source);
-        var newHTML = template(cloud);
-        console.log(newHTML);
-        $('.current-weather').append(newHTML);
-};
-    //current weather one object - handlebars tenplate(html)
-    // console.log(currentWeather);
 
-
-//USE HANDLEBARS TEMPLATE
-//VIEW: temp in farenhiet
-//VIEW: Conditions description (cloudy,raining)
-//VIEW: New conditions on new seach (will need to empty something)
