@@ -7,30 +7,41 @@ let renderCurrentWeather = function (weather) {
     var source = $('#card-template-current').html();
     var template = Handlebars.compile(source);
     var newHTML = template(weather);
-    console.log(newHTML);
+    // console.log(newHTML);
     $('.current-weather').append(newHTML);
+};
+
+let renderForecast = function () {
+    for (var i = 0; i < arrayForecast.length; i++) {
+        // console.log(arrayForecast[i])
+        $(".forecast").empty();
+        var source = $('#card-template-current').html();
+        var template = Handlebars.compile(source);
+        var newHTML = template(weather);
+        // console.log(newHTML);
+        $('.forecast').append(newHTML);
+    }
 };
 
 //EVENT: Query API
 //EVENT: click search, render weather data
 $('#search').on('click', function () {
-    console.log("click");
+    // console.log("click");
     let city = $("#search-query").val();
     fetchCurrentWeather(city)
     fetchForecast(city)
 });
 
 // hardcode view// constructor function
-var currentWeather = function(data) {
+var currentWeather = function (data) {
     var attributes = {
         icon: "http://openweathermap.org/img/wn/" + data.weather[0].icon + ".png",
         temp: data.main.temp,
-        location: data.name,
-        currentConditions: data.weather[0].description
+        city: data.name,
+        description: data.weather[0].description
     }
- return {
-    attributes: attributes
-}
+
+    return attributes;
 };
 
 let arrayForecast = []; //made of every 8th object in list
@@ -41,12 +52,12 @@ var fetchCurrentWeather = function (query) {
         url: "http://api.openweathermap.org/data/2.5/weather?q=" + query + "&APPID=d134b892e56243aa696d32a18a01d01e&units=imperial",
         dataType: "JSON",
         success: function (data) {
-            console.log(data.name);
+            console.log(data);
             // currentWeather.temp = data.main.temp;
             // currentWeather.location = data.name;
             // currentWeather.currentConditions = data.weather[0].main;
             var returnedCurrentWeather = currentWeather(data);
-            console.log(returnedCurrentWeather);
+            // console.log(returnedCurrentWeather);
             renderCurrentWeather(returnedCurrentWeather);
         },
         error: function (unknownError, timeOut) {
@@ -62,14 +73,13 @@ let fetchForecast = function (query) {
         url: "https://api.openweathermap.org/data/2.5/forecast?q=" + query + "&APPID=d134b892e56243aa696d32a18a01d01e&units=imperial",
         dataType: "JSON",
         success: function (data) {
-
             // forecastData.day = data.main.dt_text
             // forecastData.temp = data.main.temp
             // forecastData.icon = data.weather.icon
             // forecastData.conditions = data.weather.description
 
             for (let i = 0; i < data.list.length; i += 8) {
-                console.log(data.list[i])
+                // console.log(data.list[i])
                 let forecastData = {
                     day: moment(data.list[i].dt_txt).format('dddd'),
                     icon: null,
@@ -78,11 +88,10 @@ let fetchForecast = function (query) {
                 }
 
                 arrayForecast.push(forecastData);
-                console.log(arrayForecast)
-
-                //create daily forecast objects and push them to the forecast array
-
+                // console.log(arrayForecast)
             };
+
+            renderForecast();
 
 
             // console.log(data)

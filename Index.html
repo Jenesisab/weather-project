@@ -55,16 +55,17 @@ integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwE
   <!-- CURRENT WEATHER HANDLEBARS -->
   <script id="card-template-current" type="text/x-handlebars-template">
     <div class="card">
-            <div class="card-body" style="text-align: center">
-                <img src= {{icon}} alt="...">
-                <div class="card-text"> 
-                   <span><strong>{{ temp }} ªF</strong></span><br> <span>with <strong>{{ description }}</strong><br> <strong>In {{ city }}</strong>.</span> 
-                </div>
+        <div class="card-body" style="text-align: center">
+            <img src= {{icon}} alt="...">
+            <div class="card-text"> 
+                <span><strong>{{ temp }} F</strong></span><br> <span>with <strong>{{ description }}</strong><br> <strong>In {{ city }}</strong>.</span> 
             </div>
         </div>
+      </div>
     </script>
+  </div>
       <!-- FORECAST HANDLEBARS TEMPLATE -->
-      <!-- <script id="card-template-forecast" type="text/x-handlebars-template">
+      <!-- <script id="card-templateforecast" type="text/x-handlebars-template">
         <div class="col-md-2">
             <div class="card">
                 <div class="card-body" style="text-align: center">
@@ -81,17 +82,7 @@ integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwE
                 </div>
             </div>
         </div> -->
-  <!--5-day forcast cards-->
-  <div class="card-deck">
-    <div class="card">
-      <img src="http://openweathermap.org/img/wn/10d@2x.png" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title" id="moment"> Monday </h5>
-        <p class="card-text">the forcasted tempeture is <span id="temp">
-          </span>ªF with <span id="desc"></span> </p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-      </div>
-    </div>
+  
    
 <!-- jQuery first, then Tether, then Bootstrap JS. -->
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
