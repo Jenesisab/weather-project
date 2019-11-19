@@ -11,16 +11,18 @@ let renderCurrentWeather = function (weather) {
     $('.current-weather').append(newHTML);
 };
 
+
 let renderForecast = function () {
+    $(".forecast").empty();
     for (var i = 0; i < arrayForecast.length; i++) {
-        // console.log(arrayForecast[i])
-        $(".forecast").empty();
-        var source = $('#card-template-current').html();
-        var template = Handlebars.compile(source);
-        var newHTML = template(weather);
-        // console.log(newHTML);
-        $('.forecast').append(newHTML);
-    }
+    // console.log(arrayForecast[i])
+    $(".forecast").empty();
+    var source = $('#card-template-forecast').html();
+    var template = Handlebars.compile(source);
+    var newHTML = template(arrayForecast[i]);
+    // console.log(newHTML);
+    $('.forecast').append(newHTML);
+ }
 };
 
 //EVENT: Query API
@@ -32,7 +34,7 @@ $('#search').on('click', function () {
     fetchForecast(city)
 });
 
-// hardcode view// constructor function
+//constructor function
 var currentWeather = function (data) {
     var attributes = {
         icon: "http://openweathermap.org/img/wn/" + data.weather[0].icon + ".png",
@@ -40,7 +42,6 @@ var currentWeather = function (data) {
         city: data.name,
         description: data.weather[0].description
     }
-
     return attributes;
 };
 
@@ -65,6 +66,7 @@ var fetchCurrentWeather = function (query) {
         }
     });
 };
+
 //VIEW: 5-day forcast 
 // day, icon, temp, cond descrip 
 let fetchForecast = function (query) {
@@ -84,18 +86,16 @@ let fetchForecast = function (query) {
                     day: moment(data.list[i].dt_txt).format('dddd'),
                     icon: null,
                     temp: data.list[i].main.temp,
-                    conditions: data.list[i].weather[0].main
+                    conditions: data.list[i].weather[0].main,
+                     
                 }
 
                 arrayForecast.push(forecastData);
-                // console.log(arrayForecast)
+                console.log(arrayForecast)
             };
 
             renderForecast();
-
-
             // console.log(data)
-            // renderForecastCard();
             // for (let i = 0; i < arrayForecast.length;i++)
         },
         error: function (unknownError, timeOut) {
@@ -105,11 +105,6 @@ let fetchForecast = function (query) {
 };
 
 
-//     console.log(weather.icon);
-//     currentWeather.push(cloud);
-//     console.log(currentWeather);
-//     renderCurrentWeather(cloud);
-// }
 
 
 

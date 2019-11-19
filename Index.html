@@ -2,59 +2,57 @@
 <html lang="en">
 
 <head>
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title> Weather App</title>
-<link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="styles.css">
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
-integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title> Weather App</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
-<div class="container-fluid">
-  <div class="page-header"> 
-    <h1 class="text-center" style="text-align: center"> Current Weather</h1>
- </div>
-</div> 
-<!-- CURRENT WEATHER -->
-<div class="container" style="text-align: center">
-  <div class="card current-weather"></div>
-  </div>
-</div>
-<div class="container">
-  <div class="row" style="text-align: center">
-    <div class="col" style="text-align: center">
-      <br>
-      <br>
-<!---Search Form-->
-<form class="search-form">
-  <div class="form-group">
-    <input type="text" id="search-query" class="form-control" placeholder="Enter City Name"></input>
-  <br>
-  <button type="button" id=search class="btn btn-primary search">Search</button>
- </div>
-</form>
-<!-- 5 DAY FORCAST CARDS -->
-<h2 class="title-center">Five Day Forecast</h2>
-  <div class="row">
-    <div class="card-deck forecast"></div>
+  <div class="container-fluid">
+    <div class="page-header">
+      <h1 class="text-center" style="text-align: center"> Current Weather</h1>
     </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-<!--FORECAST INFO-->
-<div class="container" style="text-align: center">
-<div class="col-md-auto">
-<div id="Current-Forecast">
-  <!-- CURRENT WEATHER HANDLEBARS -->
-  <script id="card-template-current" type="text/x-handlebars-template">
-    <div class="card">
+  </div>
+  <!-- CURRENT WEATHER -->
+  <div class="container" style="text-align: center">
+    <div class="card current-weather"></div>
+  </div>
+  </div>
+  <div class="container">
+    <div class="row" style="text-align: center">
+      <div class="col" style="text-align: center">
+        <br>
+        <br>
+        <!---Search Form-->
+        <form class="search-form">
+          <div class="form-group">
+            <input type="text" id="search-query" class="form-control" placeholder="Enter City Name"></input>
+            <br>
+            <button type="button" id=search class="btn btn-primary search">Search</button>
+          </div>
+        </form>
+        <!-- 5 DAY FORCAST CARDS -->
+        <h2 class="title-center">Five Day Forecast</h2>
+          <div class="card-deck forecast"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  <!--FORECAST INFO-->
+  <div class="container" style="text-align: center">
+    <div class="col-md-auto">
+      <div id="Current-Forecast">
+        <!-- CURRENT WEATHER HANDLEBARS -->
+        <script id="card-template-current" type="text/x-handlebars-template">
+          <div class="card">
         <div class="card-body" style="text-align: center">
             <img src= {{icon}} alt="...">
             <div class="card-text"> 
@@ -63,15 +61,15 @@ integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwE
         </div>
       </div>
     </script>
-  </div>
+      </div>
       <!-- FORECAST HANDLEBARS TEMPLATE -->
-      <!-- <script id="card-templateforecast" type="text/x-handlebars-template">
+      <script id="card-template-forecast" type="text/x-handlebars-template">
         <div class="col-md-2">
             <div class="card">
                 <div class="card-body" style="text-align: center">
                     <img src= {{icon}} alt="...">
                     <div class="card-title">
-                        <strong>{{ date }}</strong>
+                        <strong>{{ day }}</strong>
                     </div>
                     <div class="card-text">
                         The temperature will be <span><strong>{{ temp }} ªF</strong></span> 
@@ -81,23 +79,23 @@ integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwE
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
   
    
 <!-- jQuery first, then Tether, then Bootstrap JS. -->
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
-  integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
-  crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
-  integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-  crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
-  integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
-<script src="weather.js"></script>
+      <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+      </script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+      </script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+      <script src="weather.js"></script>
 </body>
 
 </html>
-
